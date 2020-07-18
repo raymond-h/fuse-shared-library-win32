@@ -1,0 +1,7 @@
+Package: pthreads
+Version: 3.0.0-4
+Architecture: x86-windows
+Multi-Arch: same
+Abi: a81abbf9225a33d633596cc513870c8e9078939b
+Description: pthreads for windows
+Type: Port

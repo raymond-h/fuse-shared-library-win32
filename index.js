@@ -2,14 +2,25 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-const WINFSP = path.join(process.env['ProgramFiles(x86)'], 'WinFsp')
 const is64Bit = os.arch() === 'x64'
+
+const WINFSP = path.join(process.env['ProgramFiles(x86)'], 'WinFsp')
 const lib = path.join(WINFSP, is64Bit ? 'lib/winfsp-x64.lib' : 'lib/winfsp-x86.lib')
+const bin = path.join(WINFSP, is64Bit ? 'bin/winfsp-x64.dll' : 'bin/winfsp-x86.dll')
 const include = path.join(WINFSP, 'inc/fuse')
+
+const PTHREADS4WIN = path.join(__dirname, is64Bit ? 'pthreads_x64-windows' : 'pthreads_x86-windows')
+const pthreads = {
+  lib: path.join(PTHREADS4WIN, 'lib/pthreadVC3.lib'),
+  include: path.join(PTHREADS4WIN, 'include'),
+  bin: path.join(PTHREADS4WIN, 'bin/pthreadVC3.dll')
+}
 
 module.exports = {
   lib,
   include,
+  bin,
+  pthreads,
   configure,
   unconfigure,
   beforeMount,

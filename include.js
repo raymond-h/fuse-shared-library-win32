@@ -1,1 +1,1 @@
-console.log(require('./').include)
+console.log('"' + require('./').pthreads.include + '";"' + require('./').include + '"')
