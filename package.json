@@ -1,0 +1,30 @@
+{
+  "name": "fuse-shared-library-win32",
+  "version": "1.0.0",
+  "description": "A module containing the DLL needed to run WinFsp on Windows.",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuse-friends/fuse-shared-library-linux.git"
+  },
+  "keywords": [
+    "fuse",
+    "shared",
+    "library",
+    "prebuild",
+    "win32",
+    "windows"
+  ],
+  "author": "Raymond Hammarling <raykay.rh@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raymond-h/fuse-shared-library-win32/issues"
+  },
+  "homepage": "https://github.com/raymond-h/fuse-shared-library-win32#readme",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
