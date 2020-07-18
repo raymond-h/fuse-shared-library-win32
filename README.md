@@ -1,40 +1,22 @@
-# fuse-shared-library-linux
-A module containing the .so file and configuration scripts necessary for FUSE on Linux.
+# fuse-shared-library-win32 (Work in progress)
+A module containing the DLL needed to run WinFsp on Windows.
 
 ```
-npm install fuse-shared-library-linux
+npm install fuse-shared-library-win32
 ```
-
-Includes programmatic access to setup the FUSE device and kernel extension as part of a configuration step.
 
 ## Usage
 
 ``` js
-const libfuse = require('fuse-shared-library-linux')
+const winFspFuse = require('fuse-shared-library-win32')
 
-console.log(libfuse.lib) // path to the shared library
-console.log(libfuse.include) // path to the include folder
-
-// tells you if libfuse has been configured on this machine
-libfuse.isConfigured(function (err, yes) { })
-
-// configure libfuse on this machine (requires root access)
-// but only needs to run once
-libfuse.configure(function (err) { })
-
-// unconfigures libfuse on this machine
-libfuse.unconfigure(function (err) { })
+console.log(winFspFuse.lib) // path to the .lib file to link with
+console.log(winFspFuse.include) // path to the include folder
+// TODO path to DLL file
 ```
 
-You should configure libfuse using the above API before using the
-shared library, otherwise the program using fuse will error.
-
-You can remove the folder manually if you want to remove fuse or use the
-`unconfigure` api listed above.
-
-The shared library itself is contained within the module and not copied
-or installed anywhere. You should move the shared library next to your
-program after linking it as that is where your binary will try and load it from.
+You should move the shared library next to your program after linking it
+as that is where your binary will try and load it from.
 
 Using a GYP file this can be done like this:
 
@@ -44,11 +26,11 @@ Using a GYP file this can be done like this:
     "target_name": "fuse_example",
     "include_dirs": [
       # include it like this
-      "<!(node -e \"require('fuse-shared-library-linux/include')\")"
+      "<!(node -e \"require('fuse-shared-library-win32/include')\")"
     ],
     "libraries": [
       # link it like this
-      "<!(node -e \"require('fuse-shared-library-linux/lib')\")"
+      "<!(node -e \"require('fuse-shared-library-win32/lib')\")"
     ],
     "sources": [
       "your_program.cc"
@@ -61,7 +43,8 @@ Using a GYP file this can be done like this:
     "dependencies": ["fuse_example"],
     "copies": [{
       "destination": "build/Release",
-      "files": [ "<!(node -e \"require('fuse-shared-library-linux/lib')\")" ],
+      # TODO should actually copy the DLL rather than the linked .lib file
+      "files": [ "<!(node -e \"require('fuse-shared-library-win32/lib')\")" ],
     }]
   }]
 }

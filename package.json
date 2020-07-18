@@ -1,7 +1,7 @@
 {
   "name": "fuse-shared-library-win32",
-  "version": "1.0.0",
-  "description": "A module containing the DLL needed to run WinFsp on Windows.",
+  "version": "0.1.0",
+  "description": "A module containing path to the DLL needed to run WinFsp on Windows (Work in progress).",
   "main": "index.js",
   "scripts": {
     "test": "standard"
